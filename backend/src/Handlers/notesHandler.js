@@ -22,7 +22,8 @@ export const addNoteHandler = async (req, res) => {
   );
 
   const [notes] = await pool.query(
-    "SELECT * FROM notes WHERE id = ?"[insrtResult.insertId]
+    "SELECT * FROM notes WHERE id = ?",
+    [insrtResult.insertId]
   );
 
   res.status(201).json({
