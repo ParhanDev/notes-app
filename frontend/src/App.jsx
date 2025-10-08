@@ -83,7 +83,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen flex flex-col mt-24 items-center">
+      <main className="min-h-screen flex flex-col pt-24 items-center bg-[#FEF3E2]">
         <NoteForm onAddNote={addNote} />
         <NoteList
           notes={notes}
@@ -102,9 +102,9 @@ export default App;
 
 const Navbar = () => {
   return (
-    <nav className="w-full fixed top-0 flex justify-center bg-white shadow">
+    <nav className="w-full fixed top-0 flex justify-center bg-gradient-to-r from-orange-400 to-orange-600">
       <div className="flex justify-between px-5 py-5 container">
-        <img src="/logo.svg" alt="Logo" />
+        <img src="/logo-fh-project.svg" alt="Logo" className="h-8" />
       </div>
     </nav>
   );
@@ -123,29 +123,36 @@ const NoteForm = ({ onAddNote }) => {
 
   return (
     <section className="container max-w-xl px-5 mb-8">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="text"
-          placeholder="Title"
-          className="rounded-sm outline outline-gray-400 p-3"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          placeholder="Content"
-          className="resize-y min-h-14 rounded-sm outline outline-gray-400 p-3"
-          required
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white font-semibold rounded-lg py-3"
-        >
-          Add note
-        </button>
-      </form>
+      {/* Box putih pembungkus form */}
+      <div className="bg-white rounded-xl shadow-md p-6">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Add New Note
+        </h2>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="text"
+            placeholder="Title"
+            className="rounded-md outline-none border border-gray-300 p-3 focus:ring-2 focus:ring-[#4faff4]"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            placeholder="Content"
+            className="resize-y min-h-20 rounded-md outline-none border border-gray-300 p-3 focus:ring-2 focus:ring-[#4faff4]"
+            required
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold rounded-lg py-3 hover:opacity-90 transition"
+          >
+            Add note
+          </button>
+        </form>
+      </div>
     </section>
   );
 };
@@ -205,13 +212,13 @@ const NoteItem = ({ note, onDelete, onUpdate }) => {
           <p className="mt-2">{note.content}</p>
           <div className="mt-4 flex gap-2">
             <button
-              className="bg-yellow-500 text-white px-3 py-1 rounded"
+              className="bg-gradient-to-r from-orange-400 to-orange-500 text-white px-3 py-1 rounded hover:opacity-90 transition"
               onClick={() => setIsEditing(true)}
             >
               Edit
             </button>
             <button
-              className="bg-red-500 text-white px-3 py-1 rounded"
+              className="bg-gradient-to-r from-red-400 to-red-600 text-white px-3 py-1 rounded hover:opacity-90 transition"
               onClick={() => onDelete(note.id)}
             >
               Delete
